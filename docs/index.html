@@ -79,7 +79,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <img src="static/images/logo-iros.png" alt="iros-25" style="width:160px;height:auto;">
+          <img src="static/images/Humanoids-2025.png" alt="iros-25" style="width:160px;height:auto;">
           <h1 class="title is-1 publication-title">Novel Vision-Based One-Shot Adaptation of Learned Skills</h1>
           <div class="is-size-5 publication-authors">
 
@@ -184,12 +184,12 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Robotic manipulation can involves multiple manipulators to complete a task. 
-            In those cases, the complexity of performing the task in a coordinated manner increases, requiring coordinated planning while avoiding collisions between robots and environmental elements. 
-            For these challenges, we propose a robotic arm control algorithm based on Learning from Demonstration to independently learn the tasks of each arm, followed by a graph-based communication method using Gaussian Belief Propagation. 
-            Our method enables the resolution of decoupled dual-arm tasks learned independently without requiring coordinated planning. 
-            The algorithm generates smooth, collision-free solutions between arms and environmental obstacles while ensuring efficient movements without the need for constant replanning. 
-            Its efficiency has been validated through experiments and comparisons against another multi-robot control method in simulation using PyBullet with two opposing IIWA robots, as well as a mobile robot with two UR3 arms, which has also been used for real-world testing.
+            Robots can learn skills through a variety of methods, such as Learning from Demonstration (LfD) or Reinforcement Learning (RL). 
+            These methods typically learn some generalization capabilities, but cannot adapt quickly to large changes in the environment. 
+            We propose a novel adaptation method that combines LfD techniques with visual feedback to accurately adjust task execution. 
+            This method relies on learning a velocity map representation of the task from demonstrations, which encodes the general form of the skill. 
+            Then, this encoding can be adapted to learn a reproduction quickly using information detected visually from the environment. 
+            We perform our adaptation method in several real-world environments using a dual-arm robot platform.
           </p>
         </div>
       </div>
