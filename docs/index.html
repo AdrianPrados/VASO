@@ -168,10 +168,16 @@
 
 <section class="hero body">
   <div class="container is-max-desktop">
-    <img src="./static/images/EsquemaGeneral.jpg">
+    <img src="./static/images/GeneralScheme.png">
     <h2 class="subtitle has-text-centered">
-      General scheme of the proposed algorithm for coordinating decoupled tasks through learning the tasks for each arm 
-      independently and subsequently coordinating them using Gaussian Belief Propagation.
+      Our algorithm takes as input the vision data (a), which is decomposed into 2D information—used to segment 
+      the relevant object classes—and 3D information for depth estimation. Both are then fused and encoded as BPS (b) for each detected object 
+      in the environment 𝑥_b. This encoding is used to estimate potential grasps via a modified version of FFHNet (c), 
+      where pretrained weights are leveraged to estimate the latent space 𝑧 used to generate grasp poses for the robotic hand. 
+      These grasps are subsequently optimized based on the reachability constraints of both the hand and the robotic arm. The full 3D scene 𝒪 
+      is used to learn the traversable regions (d), along with the user's demonstration. The generated waypoints 𝐖 are used to adapt the learned models 𝐅ₓ 
+      and 𝐅_𝜃, producing a motion solution that passes through all the waypoints (e), while adapting their learned positions and orientations.
+
     </h2>
   </div>
 </section>
@@ -196,6 +202,16 @@
     </div>
   </div>
   <br>
+  <div class="column">
+    <img src="./static/images/IntroPaper.png">
+    <p class="subtitle has-text-centered">
+      Our bimanual robot performing a task-oriented learning process to rearrange the table. 
+      The algorithm detects objects using the camera, calculates the optimal grasping points, 
+      and learns both the position and orientation of the entire task using the VASO algorithm, 
+      which learns the velocity space through demonstrations and adjusts the solution using the waypoints generalizing 
+      the learned model.
+    </p>
+  </div>
   <!--<div class="container is-max-desktop">
     <div class="hero body">
       <video id="teaser" autoplay="autoplay" controls autoplay muted loop playsinline height="100%">
@@ -218,41 +234,39 @@
         <h2 class="title is-3">Method Description</h2>
         <div class="content has-text-justified">
           <p>
-            Our algorithm is designed to coordinate dual-arm tasks in decoupled scenarios. 
-            It consists of two main modules: a Learning from Demonstration (LfD) module that enables each robotic arm to independently 
-            learn its task using kinesthetic demonstrations and a Task-Parameterized Gaussian Mixture Model (TP-GMM), and a collaborative control module based 
-            on Gaussian Belief Propagation (GBP) that dynamically synchronizes the end-effectors. This second module communicates between the two arms to 
-            ensure safe, collision-free movements while adapting in real time to obstacles and dynamic changes in the environment. 
-            The approach has been validated through extensive simulation and real-world experiments, demonstrating improvements in execution time, 
-            path efficiency, and motion smoothness compared to state-of-the-art methods.
+            We propose a novel method, known as <em>Visual Adaptation of Skills in One-Shot</em> (VASO), 
+            which applies the ideas of visual keypoint-based representations in a one-shot manner. 
+            Our method takes one or more demonstrations and encodes them into a skill model. 
+            This skill model is inspired by the Fast Marching Square method, which models the demonstrations as light paths through the workspace. 
+            This model encodes "safe" paths of the skill through the workspace, avoiding any obstacles. 
+            Once the skill model is obtained, the algorithm detects objects of interest using a detection system based on the overlap of the object 
+            masks onto their 3D point cloud. This allows us to detect the keypoints of obstacles or objects of interest within the workspace, 
+            enabling the application of an algorithm based on Variational Autoencoders (VAE) that estimates both the optimal position and orientation 
+            for grasping the object, based on its reachability. A path through the workspace is generated which avoids any obstacles. 
+            Then, this path is modified to meet any necessary via-points (which may be position and/or orientation via-points) using a method 
+            inspired by elastic maps. This modified path can be used as a successful reproduction of the task through the workspace, 
+            without the need for iteration. Notably, this method can handle one or more demonstrations, can adapt to any number of novel initial, 
+            final, via-point, or obstacle constraints, and generate a successful reproduction efficiently. We evaluate our approach in several 
+            real-world environments using a bimanual manipulator robot.
           </p>
         </div>
       </div>
     </div>
-    <div class="column">
-      <img src="./static/images/IntroPaper.jpg">
+    <div class="container is-max-desktop">
+    <div class="hero body">
+      <video id="teaser" autoplay="autoplay" controls autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/VideoGrandeHumanoids.mp4" type="video/mp4">
+      </video>
       <p class="subtitle has-text-centered">
-        The method presented in this work independently learns to solve a task for each arm. 
-        These tasks are then coordinated through the application of a new method based on Gaussian Belief Propagation, 
-        which enables coordination while simultaneously avoiding obstacles in the environment by using the learned paths.
+        Example video showing the VASO algorithm and its functionality for shelf placement tasks and object rearrangement in a box.
+        The algorithm is capable of learning the task through kinesthetic demonstrations and adapting to the environment in real time using the visual input
+        and generating efficient grasping poses for both of the arms. 
       </p>
     </div>
+  </div>
     <div class="content has-text-justified">
       <p>
-        Our algorithm is composed of two main modules: the learning module and the coordination module using Gaussian Belief Propagation (GBP).
-
-
-        In the learning phase, each arm independently learns its task through kinesthetic demonstrations. During these demonstrations, 
-        the positions and orientations of the end-effector are recorded in a task-related reference frame. 
-        Then, using a task-parameterized Gaussian Mixture Model (TP-GMM), the invariant structure of the task is extracted. 
-        To optimize the model’s accuracy, synthetic data is iteratively generated and integrated only if it improves the solution. 
-        In this way, the algorithm can learn a representative trajectory from a limited set of demonstrations.
-        
-        Once each arm has learned its task, GBP is used to coordinate their movements in real time. 
-        In this module, each state of the end-effector is represented as a variable in a factor graph. 
-        The factors model the dynamic constraints, the presence of obstacles, and the interactions between the two arms. 
-        Through an iterative message-passing process, GBP enables the arms to share information about their positions and velocities, 
-        adjusting their trajectories to avoid collisions and ensure smooth, synchronized execution. 
+        Explain the method a little bit more :3 
       </p>
     </div>
   </div>
