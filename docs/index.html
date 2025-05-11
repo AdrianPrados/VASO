@@ -172,11 +172,11 @@
     <h2 class="subtitle has-text-centered">
       Our algorithm takes as input the vision data (a), which is decomposed into 2D information—used to segment 
       the relevant object classes—and 3D information for depth estimation. Both are then fused and encoded as BPS (b) for each detected object 
-      in the environment 𝑥_b. This encoding is used to estimate potential grasps via a modified version of FFHNet (c), 
+      in the environment 𝑥<sub>b</sub>. This encoding is used to estimate potential grasps via a modified version of FFHNet (c), 
       where pretrained weights are leveraged to estimate the latent space 𝑧 used to generate grasp poses for the robotic hand. 
       These grasps are subsequently optimized based on the reachability constraints of both the hand and the robotic arm. The full 3D scene 𝒪 
       is used to learn the traversable regions (d), along with the user's demonstration. The generated waypoints 𝐖 are used to adapt the learned models 𝐅ₓ 
-      and 𝐅_𝜃, producing a motion solution that passes through all the waypoints (e), while adapting their learned positions and orientations.
+      and 𝐅<sub>𝜃</sub>, producing a motion solution that passes through all the waypoints (e), while adapting their learned positions and orientations.
 
     </h2>
   </div>
