@@ -98,10 +98,22 @@
             <span class="author-block">
               <a href="" target="_blank"> Author 4</a>
             </span>
+
+            <span class="author-block">
+              <a href="" target="_blank"> Author 5</a>
+            </span>
+
+            <span class="author-block">
+              <a href="" target="_blank"> Author 6</a>
+            </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <a class="author-block" href="" target="_blank">Grup</a>
+            <a class="author-block" href="" target="_blank">Laboratory 1</a>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <a class="author-block" href="" target="_blank">Laboratory 2</a>
           </div>
 
           <div class="column has-text-centered">
@@ -314,30 +326,37 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Simulated Examples in PyBullet</h2>
+        <h2 class="title is-3">Comparison of VASO against other methods</h2>
         <div class="content has-text-justified">
           <p>
-            Below, different examples of the algorithm's functionality in simulated environments are presented. 
-            These examples demonstrate the algorithm's efficiency with two opposing IIWA robots. 
-            In each case, a critical scenario is presented—these are situations where the robot's movements intersect with each other or cross obstacles 
-            in the environment. 
-            In all cases, the algorithm successfully resolves the movements efficiently without colliding with environmental elements or the other arm.
+            To evaluate the performance of the VASO algorithm, a series of comparative experiments were conducted against state-of-the-art methods, 
+            including NDF, R-NDF, NIFT, and MIMO. While the former three relied on manually annotated datasets for training, VASO and MIMO 
+            did not require such annotations. All methods were trained and executed under the same hardware conditions, using an MSI Katana GF66 
+            with an Intel i7 CPU and RTX 3070 GPU, and were evaluated using a single fixed camera viewpoint to match real-world conditions. 
+            Two demonstration settings were tested: one-shot learning with a single demonstration (D1) and learning from multiple demonstrations (D10). 
+            VASO utilized kinesthetic demonstrations, while others relied on visual data. The experiments covered six pick-and-place tasks involving 
+            novel objects in varying positions and orientations. Performance was assessed through grasp success (G<sub>s</sub>), placement success (P<sub>s</sub>), 
+            and overall task success (O<sub>s</sub>), along with angular error between the predicted and ideal poses. Across all tasks, VASO consistently 
+            outperformed the other methods in both D1 and D10 settings, showing higher success rates and lower angular error. Notably, it achieved robust 
+            performance regardless of the number of demonstrations, highlighting its reliability for tasks requiring both positional and orientational 
+            precision.
           </p>
         </div>
       </div>
     </div>
     <div class="column">
-      <img src="./static/images/ResultIIWA.jpg">
+      <img src="./static/images/Tabla.png">
       <p class="subtitle has-text-centered">
-        Results of the different experiments conducted with the IIWA robots in simulation in terms of movement smoothness, 
-        analyzing velocity and position.
+        Success rates among the compared methods for different manipulation tasks with unseen objects. It can be seen how our method VASO generate better results 
+        than the other methods, even with only one demonstration. The method MIMO is the only one that can be compared with VASO, but it needs 10 demonstrations to
+        achieve similar results.
       </p>
     </div>
     <!-- Video Section -->
-  <div class="container">
+  <!-- <div class="container">
     <div class="columns is-multiline is-centered">
       
-      <!-- Video 1 -->
+      
       <div class="column is-one-quarter">
         <figure class="image is-16by9">
           <video controls>
@@ -348,7 +367,7 @@
         <p class="has-text-centered">Example 1: Opposite movements without obstacles.</p>
       </div>
 
-      <!-- Video 2 -->
+      
       <div class="column is-one-quarter">
         <figure class="image is-16by9">
           <video controls>
@@ -359,7 +378,7 @@
         <p class="has-text-centered">Example 2: Opposite movements with 1 obstacles.</p>
       </div>
 
-      <!-- Video 3 -->
+      
       <div class="column is-one-quarter">
         <figure class="image is-16by9">
           <video controls>
@@ -370,7 +389,7 @@
         <p class="has-text-centered">Example 3: Opposite movements with 5 obstacles (narrow passage).</p>
       </div>
 
-      <!-- Video 4 -->
+      
       <div class="column is-one-quarter">
         <figure class="image is-16by9">
           <video controls>
@@ -379,7 +398,7 @@
           </video>
         </figure>
         <p class="has-text-centered">Example 4: Obstacle in final point.</p>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -392,16 +411,21 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Examples in Real Environments with ADAM</h2>
+        <h2 class="title is-3">Real world examples using VASO</h2>
         <div class="content has-text-justified">
           <p>
-            The algorithm has also been used for tasks in real environments using the ADAM robot, 
-            belonging to the Mobile Robotics group at RoboticsLab, at the Carlos III University of Madrid. 
-            In these tests, two real task experiments were conducted where coordination between the two robotic arms is crucial: 
-            a cube stacking task and a shelf organization task. In this case, each arm uses a trajectory learned 
-            through Learning from Demonstration completely independently, without considering the other arm at any moment. 
-            The developed algorithm will handle the necessary coordination. The following two videos demonstrate the efficiency of 
-            our algorithm on the real platform, performing complex tasks smoothly and always achieving a satisfactory result.
+            To assess the capabilities of the VASO algorithm, a series of real-world experiments were carried out using a mobile dual-arm robot 
+            equipped with two UR3 arms, a Realsense D435i RGB-D camera, and two Inspire Robots RH56DFX robotic hands. The experiments involved 
+            tasks related to object reorganization and liquid serving, classified by complexity (single-arm or dual-arm), length (short or long), 
+            and type (e.g., placing, stacking, serving). Seven tasks (additionally for the ones presented in the comparisons with other methods) 
+            were performed, including object placement on shelves, liquid pouring with 
+            and without obstacles, stacking, and simultaneous object handling. While the final positions for object placement and serving were 
+            predefined, VASO autonomously determined grasping points, motion sequences, and task order based on object detection, showcasing its 
+            ability to plan and execute complex, adaptive dual-arm manipulation tasks.The robot successfully adapted to the environment in real 
+            time, generating efficient grasping poses for both arms. The algorithm demonstrated its effectiveness in learning the task through 
+            kinesthetic demonstrations and adapting to the environment using visual input. The results highlight VASO's potential for real-world 
+            applications in robotic manipulation tasks.
+
           </p>
         </div>
       </div>
@@ -414,22 +438,78 @@
       <div class="column is-half">
         <figure class="image is-16by9">
           <video controls>
-            <source src="./static/videos/CubosRealADAM.mp4" type="video/mp4">
+            <source src="./static/videos/TareaCortaObjetosinBox.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </figure>
-        <p class="has-text-centered">Cube stacking task.</p>
+        <p class="has-text-centered">Object placement task using one arm into a box.</p>
       </div>
 
       <!-- Video 2 -->
       <div class="column is-half">
         <figure class="image is-16by9">
           <video controls>
-            <source src="./static/videos/ColocarLatasRealADAM.mp4" type="video/mp4">
+            <source src="./static/videos/TareaBrazoIzq.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </figure>
-        <p class="has-text-centered">Shelf organization task.</p>
+        <p class="has-text-centered">Object placement task using one arm over a shelf.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="columns is-centered">
+      
+      <!-- Video 3 -->
+      <div class="column is-half">
+        <figure class="image is-16by9">
+          <video controls>
+            <source src="./static/videos/StackObjetcs.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <p class="has-text-centered">Object stacking task.</p>
+      </div>
+
+      <!-- Video 4 -->
+      <div class="column is-half">
+        <figure class="image is-16by9">
+          <video controls>
+            <source src="./static/videos/ServirAgua.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <p class="has-text-centered">Water serving task in different scenarios using both arms.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="columns is-centered">
+      
+      <!-- Video 5 -->
+      <div class="column is-half">
+        <figure class="image is-16by9">
+          <video controls>
+            <source src="./static/videos/DosbrazosCajas.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <p class="has-text-centered">Object picking task placing them into a box using both arms.</p>
+      </div>
+
+      <!-- Video 6 -->
+      <div class="column is-half">
+        <figure class="image is-16by9">
+          <video controls>
+            <source src="./static/videos/DosBrazosoverBox.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <p class="has-text-centered">Object picking task placing them over a shelf using both arms.</p>
       </div>
 
     </div>
