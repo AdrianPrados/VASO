@@ -203,12 +203,15 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Robots can learn skills through a variety of methods, such as Learning from Demonstration (LfD) or Reinforcement Learning (RL). 
-            These methods typically learn some generalization capabilities, but cannot adapt quickly to large changes in the environment. 
-            We propose a novel adaptation method that combines LfD techniques with visual feedback to accurately adjust task execution. 
-            This method relies on learning a velocity map representation of the task from demonstrations, which encodes the general form of the skill. 
-            Then, this encoding can be adapted to learn a reproduction quickly using information detected visually from the environment. 
-            We perform our adaptation method in several real-world environments using a dual-arm robot platform.
+            This paper introduces VASO (Visual Adaptation of Skills in One-Shot), a novel framework that enables robots to adapt
+            learned manipulation skills to new environments using a single demonstration. VASO leverages visual keypoint-based
+            representations and integrates them with a trajectory modeling approach inspired by the Fast Marching Square
+            method to generate safe, obstacle-aware paths. It incorporates object detection from visual data and 3D point
+            clouds to identify key manipulation points, applying a Variational Autoencoder to determine optimal grasp
+            positions and orientations. The learned skill is then adapted through an Elastic Map-inspired deformation
+            technique, enabling task generalization with respect to new via-points or constraints. Unlike existing visual imitation
+            learning methods, VASO achieves robust one-shot generalization without iterative re-planning, and is
+            validated in both simulated and real-world scenarios, demonstrating effectiveness in dynamic and cluttered environments. 
           </p>
         </div>
       </div>
